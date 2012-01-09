@@ -5,6 +5,7 @@ gem 'rails', '3.2.0.rc2'
 gem 'pg'
 gem 'jquery-rails'
 gem 'will_paginate'
+gem 'devise', '2.0.0.rc'
 gem 'capistrano'
 
 group :assets do
@@ -23,5 +24,7 @@ group :test do
   gem 'turn', require: false
   gem 'minitest', require: false
   gem 'capybara', require: false
+  gem 'fabrication'
+  gem 'faker'
   gem 'database_cleaner' # For Capybara
 end

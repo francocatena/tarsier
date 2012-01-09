@@ -1,0 +1,10 @@
+<h2 class="title"><%= @user %></h2>
+
+<p>
+  <%= mail_to @user.email %>
+</p>
+
+<nav class="links">
+  <%= link_to t('label.edit'), edit_user_path(@user) %> |
+  <%= link_to t('label.list'), users_path %>
+</nav>
