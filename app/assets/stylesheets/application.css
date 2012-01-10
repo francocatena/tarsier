@@ -10,5 +10,8 @@
  *
  *= require_self
  *= require vendor/bootstrap
+ *= require common
+ *= require passwords
+ *= require sessions
  *= require users
 */

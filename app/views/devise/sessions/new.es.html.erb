@@ -1,11 +1,15 @@
-<h2>Ingreso</h2>
+<div class="row">
+  <div class="span8 offset4" id="login_container">
+    <h2>Inicio de sesión</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), wrapper: :inline) do |f| %>
-  <%= f.input :email %>
-  <%= f.input :password %>
-  <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), wrapper: :inline) do |f| %>
+      <%= f.input :email, input_html: { autofocus: true } %>
+      <%= f.input :password %>
+      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      
+      <%= f.button :submit, 'Ingresar', class: 'primary' %>
+    <% end %>
 
-  <%= f.button :submit, 'Ingresar', class: 'primary' %>
-<% end %>
-
-<%= render partial: 'devise/shared/links' %>
+    <%= render partial: 'devise/shared/links' %>
+  </div>
+</div>
