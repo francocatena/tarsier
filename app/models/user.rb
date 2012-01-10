@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-    :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable,
+    :validatable
   
   # Scopes
   scope :ordered_list, order('lastname ASC')
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :lastname, :email, :password, :password_confirmation,
-    :remember_me
+    :remember_me, :lock_version
   
   # Validations
   validates :name, presence: true

@@ -5,6 +5,7 @@ gem 'rails', '3.2.0.rc2'
 gem 'pg'
 gem 'jquery-rails'
 gem 'will_paginate'
+gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 gem 'devise', '2.0.0.rc'
 gem 'capistrano'
 

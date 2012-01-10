@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 0bca82c419192bb6b7da2fa4fb6b0a2dd1f4ac03
+  specs:
+    simple_form (2.0.0.dev)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -189,6 +197,7 @@ DEPENDENCIES
   rails (= 3.2.0.rc2)
   ruby-debug19
   sass-rails
+  simple_form!
   therubyracer
   turn
   uglifier

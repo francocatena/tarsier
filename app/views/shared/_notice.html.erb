@@ -1,10 +1,4 @@
-<% hiden = hide rescue false %>
-<div id="notice" <%= raw 'style="display: none;"' if hiden %>>
-  <p><%= flash.notice || message %></p>
-  <div class="close">
-    <%= link_to_function(
-      'X', "$('#notice').stop().slideUp()", title: t('label.close')
-    ) %>
-  </div>
+<div class="alert-message success fade in" data-alert="alert">
+  <a class="close" href="#">×</a>
+  <p><%= flash.notice %></p>
 </div>
-<%= javascript_tag "$('#notice').delay(7000).slideUp();" unless hiden %>
