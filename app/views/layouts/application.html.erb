@@ -14,8 +14,11 @@
   <![endif]-->
   <%= csrf_meta_tags %>
 </head>
-<body id="c_<%= controller_name %>" data-action="<%= action_name %>">
-  <div class="container"><%= yield %></div>
+<body id="c_<%= controller_name %>" data-action="<%= action_name %>" <%= raw 'class="logged_in"' if user_signed_in? %>>
+  <%= render 'shared/menu' if user_signed_in? %>
+  <div class="container">
+    <div class="content"><%= yield %></div>
+  </div>
   
   <%= render 'shared/notice' if flash.notice %>
   <%= render 'shared/alert' if flash.alert %>

@@ -1,5 +1,5 @@
 'es':
-  app_name: 'Registros de servicio'
+  app_name: 'Libreta'
   
   attributes:
     created_at: 'Creación'
@@ -30,6 +30,11 @@
     list: 'Listado'
     new: 'Nuevo'
     show: 'Ver'
+    
+  menu:
+    actions:
+      logout: 'Salir'
+    users: 'Usuarios'
     
   messages:
     confirmation: '¿Está seguro?'
