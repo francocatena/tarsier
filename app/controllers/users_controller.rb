@@ -82,6 +82,33 @@ class UsersController < ApplicationController
     flash.alert = t 'view.users.stale_object_error'
     redirect_to edit_user_url(@user)
   end
+  
+  # GET /users/1/edit_profile
+  def edit_profile
+    @title = t('view.users.edit_title')
+    @user = current_user
+  end
+  
+  # PUT /users/1/update_profile
+  # PUT /users/1/update_profile.xml
+  def update_profile
+    @title = t('view.users.edit_title')
+    @user = current_user
+
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to(edit_profile_user_url(@user), notice: t('view.users.profile_correctly_updated')) }
+        format.xml  { head :ok }
+      else
+        format.html { render action: 'edit_profile' }
+        format.xml  { render xml: @user.errors, status: :unprocessable_entity }
+      end
+    end
+
+  rescue ActiveRecord::StaleObjectError
+    flash.alert = t('view.users.stale_object_error')
+    redirect_to edit_profile_user_url(@user)
+  end
 
   # DELETE /users/1
   # DELETE /users/1.json

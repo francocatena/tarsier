@@ -6,7 +6,7 @@
         <%= content_tag(:li, link_to(t('menu.users'), users_path), class: ('active' if controller_name == 'users')) %>
       </ul>
       <ul class="nav secondary-nav">
-        <li><%= link_to current_user.email, '#' %></li>
+        <li><%= link_to current_user.email, edit_profile_user_path(current_user) %></li>
         <li><%= link_to t('menu.actions.logout'), destroy_user_session_path, method: :delete %></li>
       </ul>
     </div>
