@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :load_current_user, only: [:edit_profile, :update_profile]
+  
+  check_authorization
+  load_and_authorize_resource
   
   # GET /users
   # GET /users.json
   def index
     @title = t 'view.users.index_title'
-    @users = User.ordered_list.paginate(
+    @users = @users.ordered_list.paginate(
       page: params[:page], per_page: LINES_PER_PAGE
     )
 
@@ -19,7 +23,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @title = t 'view.users.show_title'
-    @user = User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,7 +34,6 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @title = t 'view.users.new_title'
-    @user = User.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,14 +44,12 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @title = t 'view.users.edit_title'
-    @user = User.find(params[:id])
   end
 
   # POST /users
   # POST /users.json
   def create
     @title = t 'view.users.new_title'
-    @user = User.new(params[:user])
 
     respond_to do |format|
       if @user.save
@@ -65,8 +65,8 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
+    authorize! :assign_roles, @user if params[:user] && params[:user][:roles]
     @title = t 'view.users.edit_title'
-    @user = User.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -86,15 +86,13 @@ class UsersController < ApplicationController
   # GET /users/1/edit_profile
   def edit_profile
     @title = t('view.users.edit_title')
-    @user = current_user
   end
   
   # PUT /users/1/update_profile
   # PUT /users/1/update_profile.xml
   def update_profile
     @title = t('view.users.edit_title')
-    @user = current_user
-
+    
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(edit_profile_user_url(@user), notice: t('view.users.profile_correctly_updated')) }
@@ -120,5 +118,11 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  
+  def load_current_user
+    @user = current_user
   end
 end

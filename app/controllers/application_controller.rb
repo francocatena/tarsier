@@ -3,15 +3,19 @@ class ApplicationController < ActionController::Base
   
   rescue_from Exception do |exception|
     begin
-      @title = t('errors.title')
-      error = "#{exception.class}: #{exception.message}\n\n"
-      exception.backtrace.each { |l| error << "#{l}\n" }
+      if exception.kind_of? CanCan::AccessDenied
+        redirect_to root_url, alert: t('errors.access_denied')
+      else
+        @title = t('errors.title')
+        error = "#{exception.class}: #{exception.message}\n\n"
+        exception.backtrace.each { |l| error << "#{l}\n" }
 
-      unless response.redirect_url
-        render template: 'shared/show_error', locals: {error: exception}
+        unless response.redirect_url
+          render template: 'shared/show_error', locals: {error: exception}
+        end
+
+        logger.error(error)
       end
-      
-      logger.error(error)
 
     # En caso que la presentación misma de la excepción no salga como se espera
     rescue => ex

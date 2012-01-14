@@ -16,10 +16,12 @@
         email: 'Correo'
         password: 'Contraseña'
         password_confirmation: 'Confirmación'
+        roles: 'Perfiles'
         remember_me: 'Recordarme'
         
   errors:
     title: 'Error'
+    access_denied: 'No tiene permisos para acceder al contenido'
         
   label:
     'yes': 'Si'
@@ -51,3 +53,6 @@
       update_profile: 'Actualizar datos'
       update_password: 'Actualizar contraseña'
       profile_correctly_updated: 'Actualizaste tus datos correctamente.'
+      roles:
+        admin: 'Administrador'
+        regular: 'Normal'

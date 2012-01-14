@@ -8,6 +8,10 @@
     <%= f.input :password_confirmation, input_html: { maxlength: 255 } %>
   <% end %>
   
+  <% if can? :assign_roles, @user %>
+    <%= show_user_roles_options(f) %>
+  <% end %>
+  
   <%= f.input :lock_version, as: :hidden %>
   <%= f.button :submit, class: 'primary' %>
 <% end %>
