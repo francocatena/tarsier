@@ -11,7 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
-//= require vendor/bootstrap-alerts
+//= require vendor/jquery/jquery.ui.datepicker-es
+//= require vendor/twitter/bootstrap-alerts
 //= require common
 //= require users
