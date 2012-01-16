@@ -7,22 +7,17 @@ class ApplicationController < ActionController::Base
         redirect_to root_url, alert: t('errors.access_denied')
       else
         @title = t('errors.title')
-        error = "#{exception.class}: #{exception.message}\n\n"
-        exception.backtrace.each { |l| error << "#{l}\n" }
-
-        unless response.redirect_url
-          render template: 'shared/show_error', locals: {error: exception}
+        
+        if response.redirect_url.blank?
+          render template: 'shared/show_error', locals: { error: exception }
         end
 
-        logger.error(error)
+        logger.error(([exception, ''] + exception.backtrace).join("\n"))
       end
 
-    # En caso que la presentación misma de la excepción no salga como se espera
+    # In case the rescue explodes itself =)
     rescue => ex
-      error = "#{ex.class}: #{ex.message}\n\n"
-      ex.backtrace.each { |l| error << "#{l}\n" }
-
-      logger.error(error)
+      logger.error(([ex, ''] + ex.backtrace).join("\n"))
     end
   end
   
