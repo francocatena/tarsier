@@ -13,9 +13,9 @@ class PublicUserInteractionsTest < ActionDispatch::IntegrationTest
     assert_equal new_user_session_path, current_path
     
     assert_page_has_no_errors!
-    assert page.has_css?('.alert-message.error')
+    assert page.has_css?('.alert-message')
     
-    within '.alert-message.error' do
+    within '.alert-message' do
       assert page.has_content?(I18n.t('devise.failure.unauthenticated'))
     end
   end
@@ -41,9 +41,9 @@ class PublicUserInteractionsTest < ActionDispatch::IntegrationTest
     assert_equal new_user_session_path, current_path
     
     assert_page_has_no_errors!
-    assert page.has_css?('.alert-message.success')
+    assert page.has_css?('.alert-message')
     
-    within '.alert-message.success' do
+    within '.alert-message' do
       assert page.has_content?(I18n.t('devise.passwords.send_instructions'))
     end
   end
@@ -63,20 +63,20 @@ class PublicUserInteractionsTest < ActionDispatch::IntegrationTest
     assert_equal root_path, current_path
     
     assert_page_has_no_errors!
-    assert page.has_css?('.alert-message.success')
+    assert page.has_css?('.alert-message')
     
-    within '.alert-message.success' do
+    within '.alert-message' do
       assert page.has_content?(I18n.t('devise.sessions.signed_in'))
     end
     
-    click_link I18n.t('menu.actions.logout')
+    click_link I18n.t('menu.actions.logout.link')
     
     assert_equal new_user_session_path, current_path
     
     assert_page_has_no_errors!
-    assert page.has_css?('.alert-message.success')
+    assert page.has_css?('.alert-message')
     
-    within '.alert-message.success' do
+    within '.alert-message' do
       assert page.has_content?(I18n.t('devise.sessions.signed_out'))
     end
   end

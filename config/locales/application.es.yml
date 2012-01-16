@@ -35,7 +35,9 @@
     
   menu:
     actions:
-      logout: 'Salir'
+      logout:
+        link: 'Salir'
+        title: 'Salir de la aplicación'
     users: 'Usuarios'
     
   messages:
@@ -53,6 +55,7 @@
       update_profile: 'Actualizar datos'
       update_password: 'Actualizar contraseña'
       profile_correctly_updated: 'Actualizaste tus datos correctamente.'
+      edit_profile: 'Editar perfil'
       roles:
         admin: 'Administrador'
         regular: 'Normal'

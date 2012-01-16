@@ -85,13 +85,13 @@ class UsersController < ApplicationController
   
   # GET /users/1/edit_profile
   def edit_profile
-    @title = t('view.users.edit_title')
+    @title = t('view.users.edit_profile')
   end
   
   # PUT /users/1/update_profile
   # PUT /users/1/update_profile.xml
   def update_profile
-    @title = t('view.users.edit_title')
+    @title = t('view.users.edit_profile')
     
     respond_to do |format|
       if @user.update_attributes(params[:user])
