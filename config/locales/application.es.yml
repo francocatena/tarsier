@@ -7,9 +7,15 @@
     
   activerecord:
     models:
+      brand: 'Marca'
+      tag: 'Etiqueta'
       user: 'Usuario'
       
     attributes:
+      brand:
+        name: 'Nombre'
+      tag:
+        name: 'Nombre'
       user:
         name: 'Nombre'
         lastname: 'Apellido'
@@ -56,4 +62,4 @@
       edit_profile: 'Editar perfil'
       roles:
         admin: 'Administrador'
-        regular: 'Normal'
+        regular: 'Técnico'
