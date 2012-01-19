@@ -18,4 +18,5 @@
 //= require vendor/twitter/bootstrap-twipsy
 //= require vendor/twitter/bootstrap-popover
 //= require common
+//= require articles
 //= require users

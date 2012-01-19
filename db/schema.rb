@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120118045440) do
+ActiveRecord::Schema.define(:version => 20120118133719) do
+
+  create_table "articles", :force => true do |t|
+    t.string   "code",                                                       :null => false
+    t.string   "name",                                                       :null => false
+    t.decimal  "price",        :precision => 15, :scale => 3,                :null => false
+    t.text     "description"
+    t.integer  "brand_id"
+    t.integer  "lock_version",                                :default => 0, :null => false
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+  end
+
+  add_index "articles", ["brand_id"], :name => "index_articles_on_brand_id"
+  add_index "articles", ["code"], :name => "index_articles_on_code"
+  add_index "articles", ["name"], :name => "index_articles_on_name"
 
   create_table "brands", :force => true do |t|
     t.string   "name",                        :null => false

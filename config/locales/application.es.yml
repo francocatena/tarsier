@@ -7,11 +7,18 @@
     
   activerecord:
     models:
+      article: 'Artículo'
       brand: 'Marca'
       tag: 'Etiqueta'
       user: 'Usuario'
       
     attributes:
+      article:
+        code: 'Código'
+        name: 'Nombre'
+        price: 'Precio'
+        description: 'Descripción'
+        brand: 'Marca'
       brand:
         name: 'Nombre'
       tag:
@@ -42,12 +49,21 @@
   menu:
     actions:
       logout: 'Salir de la aplicación'
+    articles: 'Artículos'
     users: 'Usuarios'
     
   messages:
     confirmation: '¿Está seguro?'
     
   view:
+    articles:
+      index_title: 'Listado de articulos'
+      show_title: 'Detalle de articulo'
+      new_title: 'Nuevo articulo'
+      edit_title: 'Modificar articulo'
+      correctly_created: 'Articulo agregado correctamente.'
+      correctly_updated: 'Articulo actualizado correctamente.'
+      stale_object_error: 'El articulo no pudo ser actualizado, intente nuevamente.'
     users:
       index_title: 'Listado de usuarios'
       show_title: 'Detalle de usuario'

@@ -1,0 +1,30 @@
+<table class="zebra-striped resource-list">
+  <thead>
+    <tr>
+      <th><%= Article.human_attribute_name 'code' %></th>
+      <th><%= Article.human_attribute_name 'name' %></th>
+      <th><%= Article.human_attribute_name 'price' %></th>
+      <th><%= Article.human_attribute_name 'brand' %></th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= link_to article.code, article, title: t('label.show') %></td>
+        <td><%= article.name %></td>
+        <td><%= article.price %></td>
+        <td><%= article.brand %></td>
+        <td><%= link_to_edit edit_article_path(article) %></td>
+        <td><%= link_to_destroy article %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= pagination_links(@articles) %>
+
+<nav class="actions">
+  <%= link_to t('label.new'), new_article_path, class: 'btn primary' %>
+</nav>
