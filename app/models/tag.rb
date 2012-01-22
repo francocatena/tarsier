@@ -1,4 +1,6 @@
 class Tag < ActiveRecord::Base
+  include Comparable
+  
   # Scopes
   scope :ordered_list, order('name ASC')
   
@@ -11,5 +13,15 @@ class Tag < ActiveRecord::Base
   
   def to_s
     self.name
+  end
+  
+  def <=>(other)
+    self.name <=> other.name
+  end
+  
+  def as_json(options = nil)
+    default_options = { only: [:name] }
+    
+    super(default_options.merge(options || {}))
   end
 end

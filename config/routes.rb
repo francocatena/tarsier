@@ -1,4 +1,6 @@
 Tarsier::Application.routes.draw do
+  resources :tags, only: [ :index ]
+
   resources :articles
 
   devise_for :users

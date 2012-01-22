@@ -15,6 +15,15 @@
     <b><%= Article.human_attribute_name 'brand' %>:</b>
     <%= @article.brand %>
   </p>
+  
+  <% unless @article.tags.empty? %>
+    <h3><%= Article.human_attribute_name 'tag_list' %></h3>
+    <ul>
+      <% @article.tags.each do |tag| %>
+        <li><%= tag %></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
 
 <nav class="actions">

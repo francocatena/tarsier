@@ -80,4 +80,42 @@ class ArticleTest < ActiveSupport::TestCase
       error_message_from_model(@article, :code, :too_long, count: 255)
     ], @article.errors[:code]
   end
+  
+  test 'read tag list' do
+    @article = Fabricate(:article) do
+      tags!(count: 2) { |a, i| Fabricate(:tag, name: "Test #{i}") }
+    end
+    
+    assert_equal 'Test 1,Test 2', @article.tag_list
+  end
+  
+  test 'write tag list' do
+    @article = Fabricate(:article) do
+      tags!(count: 1) { |a, i| Fabricate(:tag, name: 'Test') }
+    end
+    
+    assert_difference ['Tag.count', '@article.tags.count'], 2 do
+      assert @article.update_attributes(
+        tag_list: 'Test, Multi word tag,NewTag, '
+      )
+    end
+    
+    assert_equal 'Test,Multi word tag,NewTag', @article.reload.tag_list
+    
+    assert_difference '@article.tags.count', -2 do
+      assert_no_difference 'Tag.count' do
+        assert @article.update_attributes(tag_list: 'NewTag, ')
+      end
+    end
+    
+    assert_equal 'NewTag', @article.reload.tag_list
+    
+    assert_difference '@article.tags.count', -1 do
+      assert_no_difference 'Tag.count' do
+        assert @article.update_attributes(tag_list: '')
+      end
+    end
+    
+    assert_equal '', @article.reload.tag_list
+  end
 end

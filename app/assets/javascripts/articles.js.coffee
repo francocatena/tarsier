@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+jQuery ($)->
+  if $('#c_articles').length > 0
+    $('#article_tag_list').tagit
+      allowSpaces: true,
+      removeConfirmation: true,
+      tagSource: (search, showChoices)->
+        $.getJSON '/tags', {q: search.term}, (data)->
+          showChoices $.map(data, (t)-> t.name)
+          
+    #$('#article_tag_list').next('ul.tagit').removeClass 'ui-widget-content'
