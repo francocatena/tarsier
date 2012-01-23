@@ -24,4 +24,8 @@ class Tag < ActiveRecord::Base
     
     super(default_options.merge(options || {}))
   end
+  
+  def self.all_by_name(name)
+    where('LOWER(name) LIKE ?', "#{name}%".downcase)
+  end
 end

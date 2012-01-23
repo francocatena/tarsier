@@ -5,9 +5,7 @@ class TagsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @tags = @tags.where(
-      'LOWER(name) LIKE ?', "#{params[:q]}%"
-    ).order('name ASC').limit(10)
+    @tags = @tags.all_by_name(params[:q]).order('name ASC').limit(10)
     
     respond_to do |format|
       format.json { render json: @tags }

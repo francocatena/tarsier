@@ -15,6 +15,7 @@
  *= require common
  *= require devise
  *= require articles
+ *= require brands
  *= require tags
  *= require users
 */

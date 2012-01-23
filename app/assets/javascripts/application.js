@@ -19,6 +19,8 @@
 //= require vendor/twitter/bootstrap-twipsy
 //= require vendor/twitter/bootstrap-popover
 //= require common
+//= require autocomplete
 //= require articles
+//= require brands
 //= require tags
 //= require users

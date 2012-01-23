@@ -1,4 +1,6 @@
 Tarsier::Application.routes.draw do
+  resources :brands, only: [ :index ]
+  
   resources :tags, only: [ :index ]
 
   resources :articles

@@ -4,7 +4,7 @@ class Article < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :code, :price, :description, :brand_id, :tag_list,
-    :lock_version
+    :auto_brand, :lock_version
   
   # Validations
   validates :name, :code, :price, presence: true
@@ -21,6 +21,18 @@ class Article < ActiveRecord::Base
   
   def to_s
     "[#{self.code}] #{self.name}"
+  end
+  
+  alias_method :auto_brand, :brand
+  
+  def auto_brand=(auto_brand)
+    auto_brand.to_s.strip.tap do |name|
+      if name.blank?
+        self.brand = nil
+      else
+        self.brand = Brand.find_by_name(name) || Brand.create(name: name)
+      end
+    end
   end
   
   def tag_list

@@ -81,6 +81,28 @@ class ArticleTest < ActiveSupport::TestCase
     ], @article.errors[:code]
   end
   
+  test 'auto brand' do
+    brand = Fabricate(:brand, name: 'Test')
+    
+    assert_no_difference 'Brand.count' do
+      @article.auto_brand = 'test'
+    end
+    
+    assert_equal brand.id, @article.brand.id
+    
+    assert_difference 'Brand.count' do
+      @article.auto_brand = 'New Brand'
+    end
+    
+    assert_equal 'New Brand', @article.brand.name
+    
+    assert_no_difference 'Brand.count' do
+      @article.auto_brand = '  '
+    end
+    
+    assert_nil @article.brand
+  end
+  
   test 'read tag list' do
     @article = Fabricate(:article) do
       tags!(count: 2) { |a, i| Fabricate(:tag, name: "Test #{i}") }

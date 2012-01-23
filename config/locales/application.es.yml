@@ -19,6 +19,7 @@
         price: 'Precio'
         description: 'Descripción'
         brand: 'Marca'
+        auto_brand: 'Marca'
         tag_list: 'Etiquetas'
       brand:
         name: 'Nombre'

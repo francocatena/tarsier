@@ -20,7 +20,7 @@
     <h3><%= Article.human_attribute_name 'tag_list' %></h3>
     <ul>
       <% @article.tags.each do |tag| %>
-        <li><%= tag %></li>
+        <li><%= content_tag :span, tag, class: 'label' %></li>
       <% end %>
     </ul>
   <% end %>
