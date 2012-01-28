@@ -11,7 +11,7 @@ class ArticlesControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:articles)
-    assert_select '#error_explanation', false
+    assert_select '#unexpected_error', false
     assert_template 'articles/index'
   end
 
@@ -19,7 +19,7 @@ class ArticlesControllerTest < ActionController::TestCase
     get :new
     assert_response :success
     assert_not_nil assigns(:article)
-    assert_select '#error_explanation', false
+    assert_select '#unexpected_error', false
     assert_template 'articles/new'
   end
 
@@ -35,7 +35,7 @@ class ArticlesControllerTest < ActionController::TestCase
     get :show, id: @article
     assert_response :success
     assert_not_nil assigns(:article)
-    assert_select '#error_explanation', false
+    assert_select '#unexpected_error', false
     assert_template 'articles/show'
   end
 
@@ -43,7 +43,7 @@ class ArticlesControllerTest < ActionController::TestCase
     get :edit, id: @article
     assert_response :success
     assert_not_nil assigns(:article)
-    assert_select '#error_explanation', false
+    assert_select '#unexpected_error', false
     assert_template 'articles/edit'
   end
 
